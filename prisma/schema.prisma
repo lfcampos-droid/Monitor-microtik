@@ -4,12 +4,11 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model User {
   id        Int       @id @default(autoincrement())
-  email     String    @unique
+  username  String    @unique
   password  String
   name      String?
   role      String    @default("USER")
@@ -46,6 +45,10 @@ model RouterStat {
   wan1Rx              BigInt?
   wan2Tx              BigInt?
   wan2Rx              BigInt?
+  wan1Ip              String?  @db.VarChar(50)
+  wan1Status          String?  @db.VarChar(20)
+  wan2Ip              String?  @db.VarChar(50)
+  wan2Status          String?  @db.VarChar(20)
   vpnCount            Int?
   pingAvgMs           Decimal? @db.Decimal(8, 2)
   pingLossPercent     Int?
@@ -80,6 +83,7 @@ model DeviceInventory {
   ipAddress   String?  @db.VarChar(20)
   hostname    String?  @db.VarChar(100)
   vendor      String?  @db.VarChar(100)
+  owner       String?  @db.VarChar(150)
   isOnline    Boolean?
   firstSeen   DateTime
   lastSeen    DateTime
@@ -91,4 +95,21 @@ model NetworkLog {
   topic       String?  @db.VarChar(50)
   message     String?  @db.Text
   severity    String?  @db.VarChar(20)
+}
+
+model ConnectionSession {
+  id          Int       @id @default(autoincrement())
+  username    String?
+  macAddress  String?
+  ipAddress   String?
+  owner       String?   @db.VarChar(150)
+  type        String    // "VPN", "DHCP"
+  vpnProfile  String?   @db.VarChar(100) // VPN profile/organization, e.g. "nueva-eps"
+  startedAt   DateTime  @default(now())
+  endedAt     DateTime?
+  rxBytes     BigInt?
+  txBytes     BigInt?
+  location    String?   @db.VarChar(100)
+
+  @@index([startedAt, endedAt])
 }

@@ -1,18 +1,17 @@
-import Header from "@/components/Header";
-import SummaryRow from "@/components/SummaryRow";
+import { prisma } from "@/lib/prisma";
+import DashboardLayout from "@/components/DashboardLayout";
 
-export default function Home() {
-  return (
-    <main className="flex-1 w-full max-w-7xl mx-auto py-6">
-      <Header />
-      <SummaryRow />
-      
-      <div className="px-4">
-        <div className="glass-panel p-8 text-center text-[var(--foreground)]/70">
-          <h2 className="text-xl font-medium mb-2">Más componentes en construcción...</h2>
-          <p className="text-sm">Gráficos de tráfico y monitores WAN se añadirán pronto.</p>
-        </div>
-      </div>
-    </main>
-  );
+export default async function Home() {
+  const initialStat = await prisma.routerStat.findFirst({
+    orderBy: { createdAt: 'desc' }
+  });
+
+  // Serialize BigInts safely before passing to client components
+  const serializedStat = initialStat ? JSON.parse(
+    JSON.stringify(initialStat, (key, value) =>
+      typeof value === 'bigint' ? Number(value) : value
+    )
+  ) : null;
+
+  return <DashboardLayout initialStat={serializedStat} />;
 }

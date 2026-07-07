@@ -1,23 +1,29 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { ReactQueryProvider } from "@/components/ReactQueryProvider";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: "REN Enterprise Monitor",
   description: "Next-gen NOC Dashboard & Telemetry Platform",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${inter.variable} antialiased`}>
-      <body className="font-sans min-h-screen flex flex-col">
-        {children}
+    <html lang="es" className="antialiased h-full" suppressHydrationWarning>
+      <body className="min-h-screen flex flex-col" suppressHydrationWarning>
+        <ReactQueryProvider>
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
