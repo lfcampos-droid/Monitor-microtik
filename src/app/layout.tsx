@@ -4,10 +4,10 @@ import { ReactQueryProvider } from "@/components/ReactQueryProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "REN Enterprise Monitor",
+  title: "REN Monitor",
   description: "Next-gen NOC Dashboard & Telemetry Platform",
   icons: {
-    icon: "/logo.png",
+    icon: "/logoren.png",
   },
 };
 
