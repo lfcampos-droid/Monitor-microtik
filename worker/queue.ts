@@ -35,7 +35,7 @@ try {
     console.log("[Queue] ✅ Conectado a Redis — cola de emails activa.");
   });
 
-  emailQueue = new Queue("emailQueue", { connection: bullRedis });
+  emailQueue = new Queue("emailQueue", { connection: bullRedis as any });
   emailQueue.on("error", (err) => {
     // Suppress internal queue errors
   });
@@ -55,7 +55,7 @@ try {
     const { payload } = job.data;
     console.log(`[Queue] Procesando envío de email para: ${payload.alertType}`);
     await sendAlertEmail(payload);
-  }, { connection: workerRedis });
+  }, { connection: workerRedis as any });
 
   emailWorker.on("completed", (job) => {
     console.log(`[Queue] Email enviado correctamente (Job ${job.id})`);
