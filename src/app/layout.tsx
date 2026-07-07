@@ -5,7 +5,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "REN Monitor",
-  description: "Next-gen NOC Dashboard & Telemetry Platform",
+  description: "Dashboard REN-Dashboard",
   icons: {
     icon: "/logoren.png",
   },

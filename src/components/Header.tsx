@@ -44,8 +44,8 @@ export default function Header({ onToggleNoc }: { onToggleNoc?: () => void }) {
           <Link
             href="/"
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${pathname === '/'
-                ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30'
-                : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-subtle)]'
+              ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30'
+              : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-subtle)]'
               }`}
           >
             <Home className="w-4 h-4" />
@@ -54,8 +54,8 @@ export default function Header({ onToggleNoc }: { onToggleNoc?: () => void }) {
           <Link
             href="/explorer"
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${pathname === '/explorer'
-                ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30'
-                : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-subtle)]'
+              ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30'
+              : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-subtle)]'
               }`}
           >
             <Compass className="w-4 h-4" />
@@ -64,8 +64,8 @@ export default function Header({ onToggleNoc }: { onToggleNoc?: () => void }) {
           <Link
             href="/audit"
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${pathname === '/audit'
-                ? 'bg-violet-500/15 text-violet-400 border border-violet-500/30'
-                : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-subtle)]'
+              ? 'bg-violet-500/15 text-violet-400 border border-violet-500/30'
+              : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-subtle)]'
               }`}
           >
             <Shield className="w-4 h-4" />
